@@ -65,3 +65,4 @@ In summary, the not.toBeInTheDocument() matcher is designed for more complex acc
 - Next.js docs for testing: https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library
   - this is for the Pages Router. Testing doesn't exist in the App Router docs (yet)
 - Testing Library: https://testing-library.com/docs 
+- For further reading on improving React Testing Library tests: https://claritydev.net/blog/improving-react-testing-library-tests
