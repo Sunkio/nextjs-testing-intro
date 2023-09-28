@@ -1,29 +1,54 @@
 # Introduction to Next.js Testing
+This repository contains some code-along and "play around" code for the [Introduction to Testing in Next.js](https://www.youtube.com/watch?v=AS79oJ3Fcf0) tutorial by Dave Gray.
+The topic is primarily how to set-up testing in a Next.js/Typescript project, plus some very basic testing. 
 
-`npx create-next-app@latest`
-`npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest`
+## Table of Contents
+- [Set up testing](#set-up-testing-for-your-project)
+- [Writing tests](#writing-tests)
+- [Issues I ran into](#issues-i-ran-into-when-writing-my-first-tests)
+- [Resources](#resources)
 
-Add the following to the scripts in `package.json` (be aware though that you might encounter some inconsistencies with the `--watchAll` flag):
-```JSON
-    "scripts": {
-        "test": "jest",
-        "test": "watchAll"
-    },
+## Set up testing for your project
+1. Create a new next.js project if you haven't already:
+``` bash
+  npx create-next-app@latest
 ```
+2. Install the necessary development dependencies
+``` bash 
+npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-event jest jest-environment-jsdom ts-jest
+```
+3. Add the following to the scripts in `package.json` (be aware though that you might encounter some inconsistencies with the `--watchAll` flag):
+```JSON
+  {
+   "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watchAll"
+    }
+  }  
+```
+4. Create a jest.config.js file at your project's root
+   - Next.js docs for testing: https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library
+   - for the jest.config.mjs => make sure to change it to `jest.config.js` and change the import and export statements to `require` and `module.exports` (see this project's `jest-config.js` for reference)
+   - other than that, just copy/paste the code from there
 
-- Next.js docs for testing: https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library
-  - for the jest.config.mjs => make sure to change it to `jest.config.js` and change the import and export statements to `require` and `module.exports` (see this project's `jest-config.js` for reference)
-  - just copy/paste the code from there
-- `jest.setup.js`
-- add sth. to `.eslintrc.json`, run: `npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library`
-  Then add the rest of the code from this project's `.eslintrc.json` to the file. Make sure to turn it into an array.
+5. Create a `jest.setup.js` file
+   - copy/paste the code from this repo's file
 
-### Writing tests
-- If you run into the issue that if and expect are not recognized, role jest-dom back to version 5.16.5:
-  `npm i -D @testing-library/jest-dom@5.16.5`
+6. If you use Eslint:
+   - run: `npm i -D eslint-plugin-jest-dom eslint-plugin-testing-library`
+   - then add the rest of the code from this project's `.eslintrc.json` to the file. Make sure to turn it into an array!
 
+## Writing tests
+1. Create a `__tests__` directory at the root of your project
+2. Create test suites:
+  - example: `Home.test.tsx` lets you test the index page
+    - If you run into the issue that `if` and `expect` are not recognized, role `jest-dom` back to version `5.16.5`:
+      ``` bash
+      npm i -D @testing-library/jest-dom@5.16.5
+      ```
 
-## Why I couldn't use "not" for my test case
+## Issues I ran into when writing my first tests
+### Why I couldn't use "not" for my test case
 What Chat-GPT thinks about this:
 The reason the not modifier didn't work in your initial code is related to how the toBeInTheDocument matcher and the not.toBeInTheDocument expectation function in @testing-library/react behave.
 
