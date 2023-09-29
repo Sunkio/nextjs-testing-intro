@@ -88,6 +88,8 @@ However, you wanted to check for the absence of a specific text string in the do
 
 In summary, the not.toBeInTheDocument() matcher is designed for more complex accessibility tree checks and may not be the most appropriate choice when you want to directly verify the absence of specific text or elements in the document. Using screen.queryByText and checking for null is a simpler and more direct approach for your use case.
 
+###  matchMedia not present, legacy browsers require a polyfill
+TBA 
 
 ## Resources
 - Next.js docs for testing: https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library
