@@ -24,12 +24,40 @@ npm i -D @testing-library/jest-dom @testing-library/react @testing-library/user-
         "test": "jest",
         "test:watch": "jest --watchAll"
     }
-  }  
-```
+  }
+  ```
+  - `npm test` will run Jest once, executing all your tests.
+  - npm run test:watch will run Jest in watch mode. Jest will continuously watch for file changes and re-run tests related to the changed files. This is handy when you're actively developing, as it provides rapid feedback about the state of your tests as you make changes to your codebase.
+  - Using watch mode during development can significantly speed up your testing workflow because you don't have to manually re-run your test suite every time you make a change. Instead, Jest will automatically detect file changes and re-run the relevant tests, helping you catch issues and regressions quickly.
+
+
 4. Create a jest.config.js file at your project's root
    - Next.js docs for testing: https://nextjs.org/docs/pages/building-your-application/optimizing/testing#jest-and-react-testing-library
    - for the jest.config.mjs => make sure to change it to `jest.config.js` and change the import and export statements to `require` and `module.exports` (see this project's `jest-config.js` for reference)
    - other than that, just copy/paste the code from there
+   - Optional: Absolute Imports and Module Path Aliases
+
+      If your project is using Module Path Aliases, you will need to configure Jest to resolve the imports by matching the paths option in the jsconfig.json file with the moduleNameMapper option in the jest.config.js file. For example:
+
+    ``` tsconfig.json or jsconfig.json
+    {
+      "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "paths": {
+          "@/components/*": ["components/*"]
+        }
+      }
+    }
+    ```
+    ```jest.config.js
+
+    moduleNameMapper: {
+      '^@/components/(.*)$': '<rootDir>/components/$1',
+    }
+    ```
+
 
 5. Create a `jest.setup.js` file
    - copy/paste the code from this repo's file
